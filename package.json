@@ -1,0 +1,49 @@
+{
+  "name": "exp-react-fetch",
+  "version": "1.0.0",
+  "description": "react -> redux -> fetch/axios -> express ( -> DB )",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm-run-all start:*",
+    "start:client": "next -p 3331",
+    "server": "npm-run-all server:*",
+    "server:api": "cd ./server/api && tsc && node lib -- -p 3332"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katai5plate/exp-react-fetch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katai5plate/exp-react-fetch/issues"
+  },
+  "homepage": "https://github.com/katai5plate/exp-react-fetch#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "minimist": "^1.2.0",
+    "next": "^8.1.0",
+    "pg": "^7.11.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1",
+    "typescript": "^3.5.1"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/body-parser": "^1.17.0",
+    "@types/express": "^4.16.1",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^12.0.4",
+    "@types/pg": "^7.4.14",
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-redux": "^7.0.9",
+    "@zeit/next-typescript": "^1.1.1",
+    "npm-run-all": "^4.1.5"
+  }
+}
