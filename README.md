@@ -9,7 +9,6 @@ react -> redux -> fetch/axios -> express ( -> DB )
 ```ts
 export const user: string = "postgres";
 export const host: string = "localhost";
-export const database: string = "expReactFetch";
 export const password: string = "postgres";
 export const port: number = 5432;
 ```

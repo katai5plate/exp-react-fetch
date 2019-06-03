@@ -21,7 +21,7 @@ export const getUser = (app: express.Express, uri: string): void => {
       return;
     }
 
-    const client = new Client(PSQL_CONFIG);
+    const client = new Client({ ...PSQL_CONFIG, database: "expReactFetch" });
     client.connect();
     const { rows } = await client.query(`SELECT * FROM users WHERE userid = ${userid};`);
     await client.end();
