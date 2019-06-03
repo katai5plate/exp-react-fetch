@@ -1,15 +1,3 @@
-import Button from '@material-ui/core/Button';
-import React from 'react';
+import UserDataFinder from "./components/organisms/UserDataFinder";
 
-export default class C extends React.Component {
-  onClick() {
-    fetch("http://localhost:3332/user/1")
-      .then(res => res.json())
-      .then(res => console.log(res))
-  }
-  render() {
-    return <Button variant="contained" color="primary" onClick={this.onClick}>
-      Welcome to next.js!
-    </Button>
-  }
-}
+export default () => (<UserDataFinder onClickButton={() => { }} isLoading={false} />)
