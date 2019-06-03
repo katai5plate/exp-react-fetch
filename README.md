@@ -1,5 +1,5 @@
 # exp-react-fetch
-react -> redux -> fetch/axios -> express ( -> DB )
+typescript -> react -> redux -> fetch/axios -> express -> postgreSQL
 
 ## Usage
 ### 0. require
