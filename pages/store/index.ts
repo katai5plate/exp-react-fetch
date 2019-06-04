@@ -1,8 +1,8 @@
-import { createStore, applyMiddleware } from 'redux'
-import { reducers } from '../reducers';
+import { createStore, applyMiddleware, Action, Store } from 'redux'
+import { reducers, State } from '../reducers';
 import logger from 'redux-logger'
 
-const store = createStore(
+const store: Store<State, Action> = createStore(
   reducers,
   applyMiddleware(logger)
 )

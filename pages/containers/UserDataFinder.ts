@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import UserDataFinder from "../components/organisms/UserDataFinder";
 import { actionCreaters } from "../reducers/UserDataFinder";
 
-import { States, Actions } from '../reducers';
-import { Dispatch } from "redux";
+import { State } from '../reducers';
+import { Action, Dispatch } from "redux";
 
 export default connect(
-  (state: States) => ({
+  (state: State) => ({
     ...state,
   }),
-  (dispatch: Dispatch<Actions>) => ({
+  (dispatch: Dispatch<Action>) => ({
     fetchUserData: (id: number) => {
       dispatch(actionCreaters.fetchStart(id))
     },

@@ -1,64 +1,66 @@
-// import { createActions, handleActions } from "redux-actions";
-import { ActionTypeCreator } from "./types"
 import { Reducer as ReactReducer } from "react";
+import { ActionWithType, ActionWithArgs } from "./types"
 
-enum actionTypes {
+enum ActionTypes {
   FETCH_START = "FETCH_START",
   FETCH_FAILD = "FETCH_FAILD",
   FETCH_DONE = "FETCH_DONE",
 }
 
 export type Action =
-  | ActionTypeCreator<actionTypes.FETCH_START, { value: number }>
-  | ActionTypeCreator<actionTypes.FETCH_FAILD, { error: string }>
-  | ActionTypeCreator<actionTypes.FETCH_DONE, { result: string }>
+  | ActionWithArgs<ActionTypes.FETCH_START, { value: number }>
+  | ActionWithType<ActionTypes.FETCH_FAILD>
+  | ActionWithArgs<ActionTypes.FETCH_DONE, { result: string }>
 
 export const actionCreaters = {
-  fetchStart: (id: number): Action => ({
-    type: actionTypes.FETCH_START,
-    value: id,
+  fetchStart: (value: number): Action => ({
+    type: ActionTypes.FETCH_START,
+    payload: { value },
   }),
-  fetchFaild: (error: string): Action => ({
-    type: actionTypes.FETCH_FAILD,
-    error,
+  fetchFaild: (): Action => ({
+    type: ActionTypes.FETCH_FAILD,
   }),
   fetchDone: (result: string): Action => ({
-    type: actionTypes.FETCH_DONE,
-    result,
+    type: ActionTypes.FETCH_DONE,
+    payload: { result },
   }),
 }
 
 export interface State {
   value: string;
+  isError: boolean;
   result: string;
   isLoading: boolean;
 }
 
-export const Reducer: ReactReducer<State, Action> = (state: State = {
+const initialState: State = {
   value: "",
   result: "",
   isLoading: false,
-}, action: Action): State => {
+  isError: false,
+}
+
+export const Reducer: ReactReducer<State, Action> = (
+  state = initialState, action
+): State => {
   switch (action.type) {
-    case actionTypes.FETCH_START:
+    case ActionTypes.FETCH_START:
       return {
         ...state,
         isLoading: true,
       };
-    case actionTypes.FETCH_FAILD:
+    case ActionTypes.FETCH_FAILD:
       return {
         ...state,
-        result: "ERROR!",
+        isError: true,
       };
-    case actionTypes.FETCH_DONE:
+    case ActionTypes.FETCH_DONE:
       return {
         ...state,
         isLoading: false,
-        result: action.result,
+        result: action.payload.result,
       };
     default:
       return state;
   }
 }
-
-export default Reducer;
