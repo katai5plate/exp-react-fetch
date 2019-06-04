@@ -52,6 +52,7 @@ export const Reducer: ReactReducer<State, Action> = (
     case ActionTypes.FETCH_FAILD:
       return {
         ...state,
+        isLoading: false,
         isError: true,
       };
     case ActionTypes.FETCH_DONE:
