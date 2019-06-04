@@ -1,3 +1,9 @@
-import UserDataFinder from "./components/organisms/UserDataFinder";
+import { Provider } from 'react-redux';
+import Store from './store';
+import UserDataFinder from "./containers/UserDataFinder";
 
-export default () => (<UserDataFinder onClickButton={() => { }} isLoading={false} />)
+export default () => (
+  <Provider store={Store}>
+    <UserDataFinder onClickButton={() => { }} />
+  </Provider>
+)
