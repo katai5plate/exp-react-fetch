@@ -5,7 +5,7 @@ import { Client } from "pg";
 import * as PSQL_CONFIG from "../../psql.config";
 
 export default (app: express.Express, uri: string): void => {
-  app.get(uri, async (request, response: express.Response) => {
+  app.get(uri, async (request, response) => {
     const userid = Number(request.params.userid);
     if (!Number.isInteger(userid) || userid === 0) {
       errorHandling(response, ErrorCode.INVALID_ID, 500);
