@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
       dispatch(actionCreaters.fetchStart(id))
       try {
         const response = await axios.get(`http://localhost:3332/user/${id}`, { responseType: "json" });
-        const { username } = response.data.res;
+        const { username } = response.data;
         dispatch(actionCreaters.fetchDone(username))
       } catch (e) {
         const { error } = e.response.data;
