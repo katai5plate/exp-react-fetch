@@ -6,19 +6,30 @@ import { actionCreaters } from "../reducers/UserDataFinder";
 import { State } from '../reducers';
 import { Action, Dispatch } from "redux";
 
+import axios from 'axios';
+
 const mapStateToProps = (state: State): StateProps => {
-  const { isLoading } = state.UserDataFinder;
-  console.log({ state })
+  const { isLoading, result } = state.UserDataFinder;
   return {
     ...state,
     isLoading,
+    result,
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
   return {
-    fetchUserData: (id) => {
+    fetchUserData: async (id) => {
       dispatch(actionCreaters.fetchStart(id))
+      try {
+        const response = await axios.get(`http://localhost:3332/user/${id}`, { responseType: "json" });
+        const { username } = response.data;
+        dispatch(actionCreaters.fetchDone(username))
+      } catch (e) {
+        const { error } = e.response.data;
+        alert(error);
+        dispatch(actionCreaters.fetchFaild())
+      }
     },
   }
 }
