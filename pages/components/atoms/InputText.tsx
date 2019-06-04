@@ -1,28 +1,17 @@
 import TextField from '@material-ui/core/TextField';
 import React from 'react';
-// import { PropTypes } from '@material-ui/core';
 
 interface Props {
-
+  type: HTMLInputElement["type"];
+  value: string | number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-interface State {
-  value: string;
-}
 
-class C extends React.Component<Props, State> {
-  public state: State = {
-    value: "",
-  }
-  private onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      value: e.target.value,
-    })
-  }
-  public render() {
-    return (
-      <TextField type="text" value={this.state.value} onChange={this.onChange} />
-    )
-  }
+const C: React.FC<Props> = props => {
+  const { type, value, onChange } = props;
+  return (
+    <TextField {...{ type, value, onChange }} />
+  )
 }
 
 export default C;
