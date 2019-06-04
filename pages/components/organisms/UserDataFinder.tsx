@@ -7,7 +7,7 @@ interface OwnProps {
 }
 export interface StateProps { }
 export interface DispatchProps {
-  fetchUserData: (x: number) => void;
+  fetchUserData: (id: number) => void;
 }
 type Props = OwnProps & DispatchProps;
 
@@ -18,8 +18,8 @@ const C: React.FC<Props> = props => {
       <InputForm
         label="User Data Finder (UserID)"
         buttonLabel="Search"
-        onClickButton={(x) => {
-          fetchUserData(x) // FIXME:
+        onClickButton={(value) => {
+          fetchUserData(value)
         }}
         isLoading={isLoading}
       />
