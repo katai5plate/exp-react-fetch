@@ -1,9 +1,8 @@
 import TextField from '@material-ui/core/TextField';
 import React from 'react';
-// import { PropTypes } from '@material-ui/core';
 
 interface Props {
-
+  type: HTMLInputElement["type"];
 }
 interface State {
   value: string;
@@ -19,8 +18,11 @@ class C extends React.Component<Props, State> {
     })
   }
   public render() {
+    const { onChange } = this;
+    const { type } = this.props;
+    const { value } = this.state;
     return (
-      <TextField type="text" value={this.state.value} onChange={this.onChange} />
+      <TextField {...{ type, value, onChange }} />
     )
   }
 }
