@@ -7,7 +7,6 @@ import Label from "../atoms/Label";
 interface Props {
   label: string;
   buttonLabel: string;
-  // value: string | number;
   onClickButton: (value: number) => void;
   isLoading: boolean;
 }

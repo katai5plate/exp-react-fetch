@@ -1,12 +1,10 @@
 import InputForm from "../molecules/InputForm";
 import Label from "../atoms/Label"
-// import { State, Action } from "../../reducers/UserDataFinder";
 
-interface OwnProps {
+interface Props {
   isLoading?: boolean;
   result?: string;
 }
-type Props = OwnProps// & State;
 
 const C: React.FC<Props> = ({ isLoading = false, result = "" }) => (
   <div>
