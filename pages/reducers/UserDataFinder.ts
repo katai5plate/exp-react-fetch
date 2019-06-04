@@ -48,12 +48,14 @@ export const Reducer: ReactReducer<State, Action> = (
       return {
         ...state,
         isLoading: true,
+        result: "...",
       };
     case ActionTypes.FETCH_FAILD:
       return {
         ...state,
         isLoading: false,
         isError: true,
+        result: "",
       };
     case ActionTypes.FETCH_DONE:
       return {
