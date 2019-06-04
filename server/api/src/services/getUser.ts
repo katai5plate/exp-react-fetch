@@ -21,6 +21,6 @@ export default (app: express.Express, uri: string): void => {
       errorHandling(response, ErrorCode.NOT_FOUND, 500);
       return;
     }
-    response.json({ res: rows[0] })
+    response.json(rows[0])
   })
 }
