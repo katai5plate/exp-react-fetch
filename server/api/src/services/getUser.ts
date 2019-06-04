@@ -1,19 +1,19 @@
 import express from "express";
-// import axios from "axios";
-import * as ERROR from "./errors";
+import * as ERROR from "../errors";
 
 import { Client } from "pg";
-import * as PSQL_CONFIG from "./psql.config";
+import * as PSQL_CONFIG from "../../psql.config";
 
-const sleepTime = (ms: number) => new Promise(res => setTimeout(res, ms));
+// const sleepTime = (ms: number) => new Promise(res => setTimeout(res, ms));
 
-export const wait = (app: express.Express, uri: string): void => {
-  app.get(uri, async (_, response) => {
-    await sleepTime(3000);
-    response.json({ res: "OKEY" })
-  })
-}
-export const getUser = (app: express.Express, uri: string): void => {
+// export const wait = (app: express.Express, uri: string): void => {
+//   app.get(uri, async (_, response) => {
+//     await sleepTime(3000);
+//     response.json({ res: "OKEY" })
+//   })
+// }
+
+export default (app: express.Express, uri: string): void => {
   app.get(uri, async (request, response) => {
     const userid = Number(request.params.userid);
     if (!Number.isInteger(userid) || userid === 0) {
@@ -27,7 +27,8 @@ export const getUser = (app: express.Express, uri: string): void => {
     await client.end();
 
     if (rows.length === 0) {
-      response.json({ error: ERROR.NOT_FOUND })
+      response.status(500);
+      response.send({ error: ERROR.NOT_FOUND });
       return;
     }
     response.json({ res: rows[0] })
