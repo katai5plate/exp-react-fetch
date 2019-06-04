@@ -3,28 +3,15 @@ import React from 'react';
 
 interface Props {
   type: HTMLInputElement["type"];
-}
-interface State {
-  value: string;
+  value: string | number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-class C extends React.Component<Props, State> {
-  public state: State = {
-    value: "",
-  }
-  private onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      value: e.target.value,
-    })
-  }
-  public render() {
-    const { onChange } = this;
-    const { type } = this.props;
-    const { value } = this.state;
-    return (
-      <TextField {...{ type, value, onChange }} />
-    )
-  }
+const C: React.FC<Props> = props => {
+  const { type, value, onChange } = props;
+  return (
+    <TextField {...{ type, value, onChange }} />
+  )
 }
 
 export default C;
