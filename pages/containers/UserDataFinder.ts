@@ -6,15 +6,22 @@ import { actionCreaters } from "../reducers/UserDataFinder";
 import { State } from '../reducers';
 import { Action, Dispatch } from "redux";
 
-const mapStateToProps = (state: State): StateProps => ({
-  ...state,
-})
+const mapStateToProps = (state: State): StateProps => {
+  const { isLoading } = state.UserDataFinder;
+  console.log({ state })
+  return {
+    ...state,
+    isLoading,
+  }
+}
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => ({
-  fetchUserData: (id) => {
-    dispatch(actionCreaters.fetchStart(id))
-  },
-})
+const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
+  return {
+    fetchUserData: (id) => {
+      dispatch(actionCreaters.fetchStart(id))
+    },
+  }
+}
 
 export default connect(
   mapStateToProps,
