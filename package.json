@@ -7,7 +7,7 @@
     "start": "npm-run-all start:*",
     "start:client": "next -p 3331",
     "server": "npm-run-all server:*",
-    "server:api": "cd ./server/api && tsc && node lib -- -p 3332"
+    "server:api": "cd ./server/api && tsc && node lib/src -- -p 3332"
   },
   "repository": {
     "type": "git",
