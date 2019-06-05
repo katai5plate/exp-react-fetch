@@ -12,7 +12,7 @@ const app = express();
 setup(app, args.p || args.port || 3332);
 
 wait(app, "/wait");
-getUser(app, "/user/:userid");
+getUser(app, "/get/user/:userid");
 getLogs(app, "/chat/logs");
 addMessage(app, "/chat/add");
 removeMessage(app, "/chat/remove");
