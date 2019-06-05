@@ -6,7 +6,7 @@ export default (app: express.Express, uri: string): void => {
   app.get(uri, async (request, response) => {
     const userid = Number(request.params.userid);
     if (!Number.isInteger(userid) || userid === 0) {
-      errorHandling(response, ErrorCode.INVALID_ID);
+      errorHandling(response, { code: ErrorCode.INVALID_REQUEST });
       return;
     }
 
@@ -16,7 +16,7 @@ export default (app: express.Express, uri: string): void => {
     ]);
 
     if (rows.length === 0) {
-      errorHandling(response, ErrorCode.NOT_FOUND);
+      errorHandling(response, { code: ErrorCode.NOT_FOUND });
       return;
     }
     response.json(rows[0])

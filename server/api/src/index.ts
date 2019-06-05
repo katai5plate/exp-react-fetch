@@ -4,7 +4,7 @@ import setup from "./setup";
 
 import wait from "./services/wait";
 import getUser from "./services/getUser";
-import { getLogs, addMessage } from "./services/chat";
+import { getLogs, addMessage, removeMessage } from "./services/chat";
 
 const args = minimist(process.argv);
 const app = express();
@@ -15,3 +15,4 @@ wait(app, "/wait");
 getUser(app, "/user/:userid");
 getLogs(app, "/chat/logs");
 addMessage(app, "/chat/add");
+removeMessage(app, "/chat/remove");
