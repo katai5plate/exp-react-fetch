@@ -1,8 +1,9 @@
 import express from "express";
 import { ErrorCode, errorHandling } from "../errors";
 
-import { Client } from "pg";
-import * as PSQL_CONFIG from "../../psql.config";
+// import { Client } from "pg";
+// import * as PSQL_CONFIG from "../../psql.config";
+import { sendQueries } from "../db";
 
 export default (app: express.Express, uri: string): void => {
   app.get(uri, async (request, response) => {
@@ -12,10 +13,10 @@ export default (app: express.Express, uri: string): void => {
       return;
     }
 
-    const client = new Client({ ...PSQL_CONFIG, database: "expReactFetch" });
-    client.connect();
-    const { rows } = await client.query(`SELECT * FROM users WHERE userid = ${userid};`);
-    await client.end();
+    const rows = await sendQueries([
+      "SELECT * FROM users",
+      `WHERE userid = ${userid};`,
+    ]);
 
     if (rows.length === 0) {
       errorHandling(response, ErrorCode.NOT_FOUND, 500);
