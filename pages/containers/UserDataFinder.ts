@@ -22,12 +22,15 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
     fetchUserData: async (id) => {
       dispatch(actionCreaters.fetchStart(id))
       try {
-        const response = await axios.get(`http://localhost:3332/user/${id}`, { responseType: "json" });
+        const response = await axios.get(
+          `http://localhost:3332/get/user/${id}`, { responseType: "json" },
+        );
         const { username } = response.data;
         dispatch(actionCreaters.fetchDone(username))
       } catch (e) {
-        const { error } = e.response.data;
-        alert(error);
+        const { code, errors } = e.response.data.error;
+        alert(code);
+        console.error({ errors });
         dispatch(actionCreaters.fetchFaild())
       }
     },
