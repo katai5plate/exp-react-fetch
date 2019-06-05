@@ -29,12 +29,12 @@ begin;
     passhash text not null,
     created timestamp not null default current_timestamp
   );
-  insert into :T_USERS (username, passhash) values
-    ('A-san', 'd007a8aa01f0d9caf4b90f0956133918'), -- password_A
-    ('B-san', '69b165474c10ec3919cc9b59c850827c'), -- password_B
-    ('C-san', '1555b4d961217460fbf27bceea222878'), -- password_C
-    ('D-san', '30c4f3e694e32a5b49ff156fc2784baf'), -- password_D
-    ('E-san', 'e1992ea12b70e177e3003b72e58b39c1'); -- password_E
+  insert into :T_USERS (username, passhash) values -- passhash = bcrypt(salt: 0)
+    ('A-san', '$2b$10$Hal5yu8yIfLmKaCdUq/eHeW3eqwvFpo3QfpgvxV4uG54MqWpYxitm'), -- password_A
+    ('B-san', '$2b$10$288Mfqf1.RID/5uv8qixl.NvisbWiuHuKoraso/KLh/Mtx5ywRjHK'), -- password_B
+    ('C-san', '$2b$10$J9bZJSdbpq2Luw2w8avDk.XPUp/3N.xh8aK0LBXrmEmM.Bitn56W.'), -- password_C
+    ('D-san', '$2b$10$pOW2f8LfwxhQQP8FUOhrx.Qao1a1W8bqijqWcEuKaO9s5pb4TmdF2'), -- password_D
+    ('E-san', '$2b$10$9KsHP5OiRe2w8dHeM54.Fu3orHAfj1y1z97KNTbhF27kFbdiioeFW'); -- password_E
 
   drop table :T_POSTS;
   drop sequence :S_POSTID_DEFINE;

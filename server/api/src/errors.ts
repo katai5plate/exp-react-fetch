@@ -1,10 +1,21 @@
 import { Response } from "express";
+import { ValidationError } from "class-validator";
 
 export enum ErrorCode {
-  INVALID_ID = "INVALID_ID",
+  UNKNOWN = "UNKNOWN",
+  INVALID_REQUEST = "INVALID_REQUEST",
+  AUTH_FAILED = "AUTH_FAILED",
   NOT_FOUND = "NOT_FOUND",
 }
-export const errorHandling = (response: Response, code: ErrorCode, status: number = 500) => {
+export class ErrorResult {
+  code?: ErrorCode = ErrorCode.UNKNOWN;
+  errors?: ValidationError[];
+  constructor(init?: Partial<ErrorResult>) {
+    Object.assign(this, init);
+  }
+}
+
+export const errorHandling = (response: Response, code: ErrorResult, status: number = 500) => {
   response.status(status);
-  response.send({ error: code });
+  response.send({ error: new ErrorResult(code) });
 }
